@@ -32,7 +32,7 @@ detect_python_version() {
     fi
     MIN_VERSION="3.9"
     if [[ "$(printf '%s\n' "$MIN_VERSION" "$PYTHON_VERSION" | sort -V | head -n1)" != "$MIN_VERSION" ]]; then
-        echo -e "${RED}ERROR: Image Python is $PYTHON_VERSION It isn't supported . i can installed on 3.9,3.10,3.11,3.12 and 3.13.${RESET}"
+        echo -e "${RED}ERROR: Image Python is $PYTHON_VERSION It isn't supported . It can installed on 3.9,3.10,3.11,3.12 and 3.13.${RESET}"
         exit 1
     fi
     echo "$PYTHON_VERSION"
@@ -41,30 +41,34 @@ detect_python_version() {
 # Start installation
 # ---------------------------
 echo -e "${YELLOW}************************************************************${RESET}"
-echo -e "${GREEN}**           RadioRelay Plugin Installer STARTED           **${RESET}"
+echo -e "${GREEN}**           RadioRelay Plugin Installer STARTED          **${RESET}"
 echo -e "${YELLOW}************************************************************${RESET}"
-echo '************************************************************'
-echo "**              Developed by: Angel_heart                 **"
-echo '************************************************************'
+echo -e "${YELLOW}************************************************************${RESET}"
+echo -e "${GREEN}**              Developed by: Angel_heart                 **${RESET}"
+echo -e "${YELLOW}************************************************************${RESET}"
 PY_VER=$(detect_python_version)
 # Determine the name of the file based on the Python version
 IPK="enigma2-plugin-extensions-radiorelay_1.0.py${PY_VER}_all.ipk"
 MY_URL="${BASE_URL}${IPK}"
 MY_TMP_FILE="/tmp/${IPK}"
+
 # ---------------------------
 # Download and install package
 # ---------------------------
-echo "Downloading package for Python $PY_VER..."
+echo -e "${GREEN}Running opkg update first...${RESET}"
+opkg update
+
+echo -e "${GREEN}Downloading package for Python $PY_VER...${RESET}"
 sleep 2
 if wget -T 15 -q "$MY_URL" -P "/tmp/"; then
-    echo "Installing package..."
+    echo -e "${YELLOW}Installing package...${RESET}"
     sleep 2
     if opkg install --force-reinstall "$MY_TMP_FILE"; then
         echo -e "${GREEN}SUCCESSFULLY INSTALLED${RESET}"
-        echo "Restarting enigma2..."
-        killall -9 enigma2
+        echo -e "${YELLOW}Restarting enigma2...${RESET}"
+        # killall -9 enigma2
     else
-        echo -e "${RED}INSTALLATION FAILED!${RESET}"
+        echo -e "${RED}INSTALLATION FAILED after opkg update!${RESET}"
         exit 1
     fi
 else
