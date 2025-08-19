@@ -48,7 +48,7 @@ echo "**              Developed by: Angel_heart                 **"
 echo '************************************************************'
 PY_VER=$(detect_python_version)
 # Determine the name of the file based on the Python version
-IPK="enigma2-plugin-extensions-radiorelay_1.0_all.py${PY_VER}_all.ipk"
+IPK="enigma2-plugin-extensions-radiorelay_1.0.py${PY_VER}_all.ipk"
 MY_URL="${BASE_URL}${IPK}"
 MY_TMP_FILE="/tmp/${IPK}"
 # ---------------------------
