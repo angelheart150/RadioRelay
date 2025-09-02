@@ -1,0 +1,9 @@
+v1.1 (2025-08-23):
+- update search for stations and Add history search.
+- Add check updates notification function.
+- Update Toggle categories view.
+- Update view last session Configuration. 
+- Add number of category stations.
+- New Screen for Manage Favorites to add,remove,select,sort and play favorite radio.
+v1.0 (2025-09-19):
+- Initial release of RadioRelay plugin.
