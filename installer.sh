@@ -48,7 +48,7 @@ echo -e "${GREEN}**              Developed by: Angel_heart                 **${R
 echo -e "${YELLOW}************************************************************${RESET}"
 PY_VER=$(detect_python_version)
 # Determine the name of the file based on the Python version
-IPK="enigma2-plugin-extensions-radiorelay_1.0.py${PY_VER}_all.ipk"
+IPK="enigma2-plugin-extensions-radiorelay_1.1.py${PY_VER}_all.ipk"
 MY_URL="${BASE_URL}${IPK}"
 MY_TMP_FILE="/tmp/${IPK}"
 
